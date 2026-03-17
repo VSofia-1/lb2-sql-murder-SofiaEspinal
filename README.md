@@ -64,3 +64,72 @@ WHERE person_id == 14887 or person_id == 16371
 >#### Conclusión
 >Podemos ver que Morty Schapiro (id = 14887) dió varias pistas importantes como: Llevaba una bolsa del gimnasio «Get Fit Now». El número de socio que figuraba en la bolsa empezaba por «48Z». Solo los socios Gold tienen esas bolsas. El hombre se subió a un coche cuya matrícula incluía «H42W». Y la señorita Annabel (id = 16371) reconoció el asesino en el gimnasio el 9 de enero 
 
+### Query 5
+
+```
+SELECT * FROM get_fit_now_member
+WHERE membership_status == 'gold' AND id LIKE '48Z%'
+
+```
+#### Evidencia
+
+![This is an alt text.](/evidencia/paso5_miembros.png)
+
+>#### Conclusión
+>Segun las pistas que nos dieron, hay dos personas cuyo ID de miembro comienza por «48Z» y tienen la bolsa del gimnasio de socios gold, tienen por id de membresia "48Z7A" y "48Z55"
+
+
+### Query 6
+
+```
+SELECT * FROM get_fit_now_check_in
+WHERE membership_id == '48Z7A' or membership_id == '48Z55'
+
+```
+#### Evidencia
+
+![This is an alt text.](/evidencia/paso6_checkin.png)
+
+>#### Conclusión
+>Estuve mirando si por casualidad, la hora en la que las dos personas estuvieron en el gimnasio el día que el testigo vio el asesino podrían coincidir, pero ambas coinciden con la hora en la que ella estaba lo que no nos hizo avanzar en ningún aspecto
+
+### Query 7
+
+```
+SELECT * FROM driver_license
+WHERE plate_number LIKE '%H42W%'
+
+```
+#### Evidencia
+
+![This is an alt text.](/evidencia/paso7_autos.png)
+
+>#### Conclusión
+> Siguiendo la pista principal, de nuestro testigo que dijo haber visto parte la placa del auto, podemos ver que hay tres autos que podrían coincidir con la placa que mensionamos, así que vamos a tener en cuenta los ID de cada una de ellas
+
+### Query 8
+
+```
+SELECT * FROM person
+WHERE license_id == 183779 or license_id == 423327 or license_id == 664760
+```
+#### Evidencia
+
+![This is an alt text.](/evidencia/paso8_asesino.png)
+
+>#### Conclusión
+>Volvemos a hacer la investigación de las personas por medio de su licencia de conducción y nos damos cuenta que hay una sola persona que coincide con todas las pistas que hemos dado anteriormente 'Jeremy Bowers'
+
+### Query 9
+
+```
+INSERT INTO solution VALUES (1, 'Jeremy Bowers');
+        
+        SELECT value FROM solution;
+```
+#### Evidencia
+
+![This is an alt text.](/evidencia/paso9_solucion.png)
+
+>#### Conclusión
+>El Asesino es Jeremy Bowers
